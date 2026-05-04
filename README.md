@@ -1,85 +1,103 @@
-GO-Canary Token System
-Advanced Deception & Forensic Monitoring Framework | BLUE TEAM | SOC TOOL
+# GO-Canary Token System
+> **Advanced Deception & Forensic Monitoring Framework | Blue Team | SOC Tool**
 
-The GO-Canary Token System is a proactive defense framework designed to detect unauthorized internal reconnaissance. It utilizes "Honey-Assets" (digital tripwire documents) to lure intruders, capturing high-fidelity forensic metadata for real-time attribution.
+![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)
+![Language: Go](https://img.shields.io/badge/Language-Go-black.svg)
+![Security: Blue Team](https://img.shields.io/badge/Security-Blue_Team-grey.svg)
 
-Architecture Overview
+The **GO-Canary Token System** is a proactive defense framework designed to detect unauthorized internal reconnaissance. It utilizes "Honey-Assets" (digital tripwire documents) to lure intruders, capturing high-fidelity forensic metadata for real-time attribution and response.
 
-1) The system follows a three-pillar security design:
+---
 
-2) The Trap: Deceptive assets (HTML/Honeyfiles) embedded with tracking pixels.
+## 🏗️ Architecture & Logic Flow
+The system operates on a three-pillar security design to ensure stealth and reliability:
 
-3) The Tunnel: Secure ngrok relay for bypassing firewalls and NAT.
+1.  **The Trap**: A deceptive `TOP_SECRET.html` file embedded with a hidden tracking pixel.
+2.  **The Transit**: A secure **ngrok** tunnel that allows the "ping" to bypass local firewalls and NAT, enabling global tracking.
+3.  **The Listener**: A high-performance Go-backend that extracts the attacker's **Public IP** (via `X-Forwarded-For`) and **User-Agent** fingerprint.
+4.  **The Response**: Data is saved to an **SQLite** database while a background **Goroutine** dispatches an encrypted SMTP alert.
 
-4) The Listener: High-performance Go-backend for forensic extraction and SMTP alerting.
+---
 
-Step 1: Prerequisites
-Before deployment, ensure the following are installed:
+## 🛠️ Step 1: Prerequisites
+Ensure the following are installed on your deployment machine:
+* **Go (Golang)**: [Download here](https://go.dev/dl/)
+* **ngrok**: [Download here](https://ngrok.com/download)
+* **Gmail Account**: Required for receiving automated security alerts.
 
-1) Go (Golang): https://go.dev/dl/ 
+---
 
-2) ngrok: https://ngrok.com/download  
+## ⚙️ Step 2: Security Configuration
 
-- Gmail Account: Required for receiving automated security alerts.
-
-Step 2: Security Configuration (Important)
-1. Alerting Setup (SMTP)
-Open main.go and locate the const section. Update these values:
-
-Go
+### 1. Alerting Setup (SMTP)
+Open `main.go` and locate the `const` section. Update these values:
+```go
 const (
     smtpEmail    = "your-email@gmail.com"     // Your Gmail address
-    smtpPassword = "your-app-password"       // Your 16-character Google App Password
+    smtpPassword = "your-app-password"       // 16-character Google App Password
 )
-⚠️ Security Warning: You must generate a "Google App Password" in your Google Account Security settings. Your standard Gmail password will not work.
+Security Warning: You must generate a "Google App Password" in your Google Account Security settings. Standard passwords will not be accepted.
 
 2. Tunneling Setup (ngrok)
-Open a new terminal and run: ngrok http 8080
+Launch the tunnel in your terminal: ngrok http 8080
 
-Copy the Forwarding URL provided (e.g., https://a1b2-c3d4.ngrok-free.app).
+Copy the Forwarding URL provided (e.g., https://a1b2.ngrok-free.app).
 
-Open TOP_SECRET.html and replace the placeholder URL:
-fetch("https://YOUR_NGROK_URL_HERE/pixel.png", { ... });
+Open TOP_SECRET.html and update the fetch URL:
 
+JavaScript
+fetch("https://YOUR_NGROK_URL.ngrok-free.app/pixel.png", { ... });
 Step 3: Deployment
-Initialize Environment:
+Run the following commands in your project directory:
 
-Bash
+Windows (PowerShell):
+
+PowerShell
 $env:CGO_ENABLED = "0"
 go mod tidy
-Start the Listener:
+go run main.go
+Linux/macOS:
 
 Bash
+export CGO_ENABLED=0
+go mod tidy
 go run main.go
+📊 Forensic Dashboard
+Access the incident logs via the "Noir" forensic interface at: http://localhost:8080/view-logs.
 
-Forensic Dashboard
-Access the incident logs and "Noir" interface at: http://localhost:8080/view-logs.
+Source IP: The attacker's true public origin.
 
-1) Identifier: The specific trap triggered.
+Observed At: High-resolution forensic timestamps.
 
-2) Source IP: Attacker's true public IP (via X-Forwarded-For).
+Fingerprint: Full browser and OS metadata for device attribution.
 
-3) Observed At: High-resolution timestamp.
+⚖️ Ethics & License
+Distributed under the MIT License. For educational and authorized defensive security purposes only.
 
-4) Fingerprint: Full browser/OS User-Agent for attribution.
 
-⚖️ License
-This project is licensed under the MIT License - see the LICENSE file for details.
+---
 
-2. Essential Repository Tips
-The .gitignore File: You must have this file to ensure your private database (alerts.db) and email logs aren't uploaded.
+### **2. Step-by-Step Instructions for the User**
+If you are explaining how to use this project to someone else, here is the simplified order:
 
-The LICENSE File: Professional repos always include a license. I suggest the MIT License—it’s short, simple, and standard.
+1.  **Clone the Project**: Download the folder from GitHub.
+2.  **Configure Credentials**:
+    * The user must go to their Google Account and create an **App Password**.
+    * Paste that email and password into the `const` section of `main.go`.
+3.  **Set up the Tunnel**:
+    * Open a terminal and run `ngrok http 8080`.
+    * Take the link ngrok gives you and paste it into the `TOP_SECRET.html` file where it says `fetch`.
+4.  **Run the Backend**:
+    * Open a terminal in the folder.
+    * Run `go run main.go`.
+5.  **Trigger the Alert**:
+    * Double-click `TOP_SECRET.html`.
+    * The user will immediately receive an email alert, and the data will appear at `http://localhost:8080/view-logs`.
 
-Repository Tags: On the right side of your GitHub repo, add "Topics":
+---
 
-1) cybersecurity
-
-2) forensics
-
-3) golang
-
-4) intrusion-detection
-
-5) honeypot
-
+### **3. Final Upload Checklist**
+Before you push this to your profile, make sure you have these **3 files** in your folder:
+* **`.gitignore`**: Containing `alerts.db` (to keep your testing data private).
+* **`LICENSE`**: Containing the MIT License text.
+* **`README.md`**: The manual we just created.
