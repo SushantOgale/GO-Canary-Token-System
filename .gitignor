@@ -1,0 +1,8 @@
+# Local Forensic Database
+alerts.db
+alerts.db-journal
+
+# Compiled Binaries
+*.exe
+main
+canary-guard
