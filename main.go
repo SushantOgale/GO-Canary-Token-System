@@ -15,8 +15,8 @@ import (
 var db *sql.DB
 
 const (
-	smtpEmail    = "fakemailer03@gmail.com"
-	smtpPassword = "xeqsxgbjdzswfyra"
+	smtpEmail    = "YOUR_EMAIL@gmail.com"
+	smtpPassword = "YOUR_APP_PASSWORD"
 	smtpHost     = "smtp.gmail.com"
 	smtpPort     = "587"
 	dbPath       = "./alerts.db"
