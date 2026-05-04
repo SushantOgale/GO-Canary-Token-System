@@ -1,5 +1,5 @@
 GO-Canary Token System
-Advanced Deception & Forensic Monitoring Framework | MSc Cyber Security
+Advanced Deception & Forensic Monitoring Framework | BLUE TEAM | SOC TOOL
 
 The GO-Canary Token System is a proactive defense framework designed to detect unauthorized internal reconnaissance. It utilizes "Honey-Assets" (digital tripwire documents) to lure intruders, capturing high-fidelity forensic metadata for real-time attribution.
 
