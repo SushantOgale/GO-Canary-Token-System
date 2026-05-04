@@ -3,7 +3,7 @@ Advanced Deception & Forensic Monitoring Framework | MSc Cyber Security
 
 The GO-Canary Token System is a proactive defense framework designed to detect unauthorized internal reconnaissance. It utilizes "Honey-Assets" (digital tripwire documents) to lure intruders, capturing high-fidelity forensic metadata for real-time attribution.
 
-🏗️ Architecture Overview 
+Architecture Overview
 
 1) The system follows a three-pillar security design:
 
@@ -20,7 +20,7 @@ Before deployment, ensure the following are installed:
 
 2) ngrok: https://ngrok.com/download  
 
-Gmail Account: Required for receiving automated security alerts.
+- Gmail Account: Required for receiving automated security alerts.
 
 ⚙️ Step 2: Security Configuration (Important)
 1. Alerting Setup (SMTP)
