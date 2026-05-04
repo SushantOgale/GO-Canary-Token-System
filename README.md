@@ -13,7 +13,7 @@ Architecture Overview
 
 4) The Listener: High-performance Go-backend for forensic extraction and SMTP alerting.
 
-🛠️ Step 1: Prerequisites
+Step 1: Prerequisites
 Before deployment, ensure the following are installed:
 
 1) Go (Golang): https://go.dev/dl/ 
@@ -22,7 +22,7 @@ Before deployment, ensure the following are installed:
 
 - Gmail Account: Required for receiving automated security alerts.
 
-⚙️ Step 2: Security Configuration (Important)
+Step 2: Security Configuration (Important)
 1. Alerting Setup (SMTP)
 Open main.go and locate the const section. Update these values:
 
@@ -41,7 +41,7 @@ Copy the Forwarding URL provided (e.g., https://a1b2-c3d4.ngrok-free.app).
 Open TOP_SECRET.html and replace the placeholder URL:
 fetch("https://YOUR_NGROK_URL_HERE/pixel.png", { ... });
 
-🚀 Step 3: Deployment
+Step 3: Deployment
 Initialize Environment:
 
 Bash
@@ -51,7 +51,8 @@ Start the Listener:
 
 Bash
 go run main.go
-📊 Forensic Dashboard
+
+Forensic Dashboard
 Access the incident logs and "Noir" interface at: http://localhost:8080/view-logs.
 
 1) Identifier: The specific trap triggered.
@@ -81,3 +82,4 @@ Repository Tags: On the right side of your GitHub repo, add "Topics":
 4) intrusion-detection
 
 5) honeypot
+
