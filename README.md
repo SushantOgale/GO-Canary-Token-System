@@ -3,21 +3,22 @@ Advanced Deception & Forensic Monitoring Framework | MSc Cyber Security
 
 The GO-Canary Token System is a proactive defense framework designed to detect unauthorized internal reconnaissance. It utilizes "Honey-Assets" (digital tripwire documents) to lure intruders, capturing high-fidelity forensic metadata for real-time attribution.
 
-🏗️ Architecture Overview
-The system follows a three-pillar security design:
+🏗️ Architecture Overview 
 
-The Trap: Deceptive assets (HTML/Honeyfiles) embedded with tracking pixels.
+1) The system follows a three-pillar security design:
 
-The Tunnel: Secure ngrok relay for bypassing firewalls and NAT.
+2) The Trap: Deceptive assets (HTML/Honeyfiles) embedded with tracking pixels.
 
-The Listener: High-performance Go-backend for forensic extraction and SMTP alerting.
+3) The Tunnel: Secure ngrok relay for bypassing firewalls and NAT.
+
+4) The Listener: High-performance Go-backend for forensic extraction and SMTP alerting.
 
 🛠️ Step 1: Prerequisites
 Before deployment, ensure the following are installed:
 
-Go (Golang): Download
+1) Go (Golang): https://go.dev/dl/ 
 
-ngrok: Download
+2) ngrok: https://ngrok.com/download  
 
 Gmail Account: Required for receiving automated security alerts.
 
@@ -53,13 +54,13 @@ go run main.go
 📊 Forensic Dashboard
 Access the incident logs and "Noir" interface at: http://localhost:8080/view-logs.
 
-Identifier: The specific trap triggered.
+1) Identifier: The specific trap triggered.
 
-Source IP: Attacker's true public IP (via X-Forwarded-For).
+2) Source IP: Attacker's true public IP (via X-Forwarded-For).
 
-Observed At: High-resolution timestamp.
+3) Observed At: High-resolution timestamp.
 
-Fingerprint: Full browser/OS User-Agent for attribution.
+4) Fingerprint: Full browser/OS User-Agent for attribution.
 
 ⚖️ License
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -71,12 +72,12 @@ The LICENSE File: Professional repos always include a license. I suggest the MIT
 
 Repository Tags: On the right side of your GitHub repo, add "Topics":
 
-cybersecurity
+1) cybersecurity
 
-forensics
+2) forensics
 
-golang
+3) golang
 
-intrusion-detection
+4) intrusion-detection
 
-honeypot
+5) honeypot
